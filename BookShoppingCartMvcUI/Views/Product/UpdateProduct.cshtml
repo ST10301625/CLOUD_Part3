@@ -1,0 +1,110 @@
+﻿@model ProductDTO
+@{
+    Layout = "_AdminLayout";
+}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Update Product</h2>
+
+    <!-- Back Button -->
+    <div class="mb-3">
+        <a asp-action="Index" asp-controller="Product" class="btn btn-primary">
+            <i class="bi bi-arrow-left-circle"></i> Back
+        </a>
+    </div>
+
+    <!-- Update Product Form -->
+    <form asp-action="UpdateProduct" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Image" />
+
+        <!-- Product Name -->
+        <div class="my-2">
+            <label>Product Name*</label>
+            <input type="text" class="form-control" asp-for="ProductName" />
+            <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+
+        <!-- Brand Name -->
+        <div class="my-2">
+            <label>Brand Name*</label>
+            <input type="text" class="form-control" asp-for="BrandName" />
+            <span asp-validation-for="BrandName" class="text-danger"></span>
+        </div>
+
+        <!-- Style Selection -->
+        <div class="my-2">
+            <label>Style*</label>
+            <select class="form-control" asp-for="StyleId" asp-items="Model.StyleList">
+                <option value="">Select Style</option>
+            </select>
+            <span asp-validation-for="StyleId" class="text-danger"></span>
+        </div>
+
+        <!-- Price -->
+        <div class="my-2">
+            <label>Price*</label>
+            <input type="number" class="form-control" asp-for="Price" step="0.01" min="0" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <!-- Image Display and Upload -->
+        <div class="my-2">
+            <label>Product Image</label>
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <div class="mb-2">
+                    <img src="/images/@Model.Image" class="img-thumbnail" style="width:150px;height:120px" alt="Product Image" />
+                    <div>Current Image</div>
+                </div>
+            }
+            <input type="file" class="form-control" asp-for="ImageFile" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="my-3">
+            <button type="submit" class="btn btn-success btn-lg w-100">
+                <i class="bi bi-check-circle"></i> Update Product
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    .container {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .form-control {
+        font-size: 1rem;
+    }
+
+    .btn-lg {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .img-thumbnail {
+        border-radius: 8px;
+    }
+
+    .bi {
+        font-size: 1.2rem;
+        margin-right: 8px;
+    }
+
+    .btn-primary, .btn-success {
+        width: 150px;
+        padding: 8px;
+    }
+
+    .my-2, .my-3 {
+        margin-bottom: 1rem;
+    }
+</style>

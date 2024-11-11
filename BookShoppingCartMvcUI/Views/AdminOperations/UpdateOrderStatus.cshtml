@@ -1,0 +1,71 @@
+﻿@model UpdateOrderStatusModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Update Payment Status";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Update Order Status</h2>
+
+    <a class="my-2 btn btn-outline-secondary" asp-action="AllOrders">
+        <i class="bi bi-arrow-left-circle"></i> Back to Orders
+    </a>
+
+    <form asp-action="UpdateOrderStatus" class="pt-2" style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" asp-for="OrderId" />
+
+        <!-- Order Status Selection -->
+        <div class="mb-3">
+            <label class="form-label">Order Status</label>
+            <select class="form-control" asp-for="OrderStatusId" asp-items="@Model.OrderStatusList">
+                <option value="">Select Order Status</option>
+            </select>
+            <span class="text-danger" asp-validation-for="OrderStatusId"></span>
+        </div>
+
+        <!-- Update Button -->
+        <button type="submit" class="btn btn-success w-100 mt-3">
+            <i class="bi bi-check-circle"></i> Update Status
+        </button>
+
+        <!-- Temp Data Message -->
+        @if (TempData["msg"] != null)
+        {
+            <div class="text-info my-3">
+                @TempData["msg"]
+            </div>
+        }
+    </form>
+</div>
+
+<!-- Optional Custom Styling -->
+<style>
+    .container {
+        max-width: 800px;
+    }
+
+    .form-control {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .btn {
+        font-size: 1.1rem;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+    .btn-outline-secondary {
+        font-size: 1rem;
+    }
+
+    .my-3 {
+        margin-top: 20px;
+    }
+</style>

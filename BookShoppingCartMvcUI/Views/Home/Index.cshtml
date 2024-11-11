@@ -1,0 +1,78 @@
+﻿@model ProductDisplayModel
+
+<div class="container my-4">
+    <form asp-action="Index" class="row g-3 align-items-center">
+        <div class="col-md-4">
+            <label for="styleId" class="form-label">Styles</label>
+            <select class="form-select" id="styleId" name="styleId">
+                <option selected>Choose Style</option>
+                @foreach (var style in Model.Styles)
+                {
+                    <option selected="@(style.Id == Model.StyleId)" value="@style.Id">@style.StyleName</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="sterm" class="form-label">Search by Title</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control" value="@Model.STerm" id="sterm" name="sterm" placeholder="Search by title">
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary me-2">Search</button>
+            <a href="/Home/Index" class="btn btn-secondary">Reset</a>
+        </div>
+    </form>
+</div>
+
+<div class="container mt-4 d-flex flex-wrap justify-content-start">
+    @foreach (var product in Model.Products)
+    {
+        <div class="card shadow-sm mx-3 mb-4" style="width: 15rem;">
+            <div class="position-relative">
+                <img src="@(!string.IsNullOrEmpty(product.Image) ? $"/images/{product.Image}" : "/images/NoImage.png")" class="card-img-top" alt="@product.ProductName" style="height: 200px; object-fit: cover;">
+                @if (product.Quantity == 0)
+                {
+                    <span class="position-absolute top-0 start-0 p-2 bg-danger text-white" style="border-radius: 0 0.5rem 0.5rem 0;">Out of stock</span>
+                }
+            </div>
+            <div class="card-body text-center">
+                <h5 class="card-title mb-2" style="font-size: 1rem;">@product.ProductName</h5>
+                <p class="card-text text-muted small mb-2">
+                    <b>Style:</b> @product.StyleName <br />
+                    <b>Brand:</b> @product.BrandName <br />
+                    <b>Price:</b> R @product.Price
+                </p>
+                @if (product.Quantity > 0)
+                {
+                    <button type="button" onclick="add(@product.Id)" class="btn btn-outline-primary btn-sm w-100">Add to cart</button>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        async function add(productId) {
+            var usernameEl = document.getElementById("username");
+            if (usernameEl == null) {
+                window.location.href = "/Identity/Account/Login";
+            }
+            try {
+                var response = await fetch(`/Cart/AddItem?productId=${productId}`);
+                if (response.status == 200) {
+                    var result = await response.json();
+                    document.getElementById("cartCount").innerText = result;
+                    window.location.href = "#cartCount";
+                }
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    </script>
+}

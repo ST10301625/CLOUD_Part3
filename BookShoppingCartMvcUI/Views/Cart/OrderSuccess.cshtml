@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Order Success";
+}
+
+<div class="container text-center my-5">
+    <div class="card p-5 shadow-lg rounded">
+        <div class="icon-container mb-3">
+            <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+        </div>
+        <h1 class="display-5 fw-bold text-success">Order Successful!</h1>
+        <p class="lead mt-3 text-muted">
+            Thank you for your purchase. Your order has been placed successfully, and a confirmation email has been sent to you.
+        </p>
+        <p class="text-muted mb-4">
+            We’re preparing your order for shipment and will notify you once it’s on its way.
+        </p>
+        <a href="/Home/Index" class="btn btn-primary btn-lg mt-4">Back to Home</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 700px;
+    }
+
+    .card {
+        border: none;
+        background-color: #f8f9fa;
+    }
+
+    h1 {
+        color: #28a745;
+    }
+
+    .btn-primary {
+        background-color: #1b6ec2;
+        border-color: #1861ac;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #155a9b;
+            border-color: #144e88;
+        }
+</style>

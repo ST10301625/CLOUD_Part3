@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+<div class="container my-5">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+    <section class="mb-5">
+        <h2>Our Story</h2>
+        <p>
+            Founded with a passion for excellence, ABC Retail Store has grown from a small startup to a leading retailer in the luxury market.
+            Our commitment to quality and innovation has been the driving force behind our success, as we continually seek to provide our
+            customers with an unparalleled shopping experience.
+        </p>
+    </section>
+
+    <section class="mb-5">
+        <h2>Our Mission</h2>
+        <p>
+            Our mission is to deliver premium quality products that exceed our customers' expectations, foster innovation in every aspect of
+            our business, and build lasting relationships with our clients. We believe in maintaining transparency, sustainability, and
+            excellence in everything we do.
+        </p>
+    </section>
+
+    <section class="mb-5">
+        <h2>Why Choose Us</h2>
+        <ul>
+            <li><strong>Quality Products:</strong> We offer a curated selection of the finest products.</li>
+            <li><strong>Customer Focus:</strong> Your satisfaction is our top priority.</li>
+            <li><strong>Innovation:</strong> We strive to stay ahead by embracing new trends and technologies.</li>
+            <li><strong>Commitment:</strong> We are dedicated to ethical practices and sustainability.</li>
+        </ul>
+    </section>
+
+    <section class="mb-5">
+        <h2>Meet Our Team</h2>
+        <p>
+            Our team is comprised of industry experts who are passionate about delivering excellence. From our experienced product managers
+            to our dedicated customer service team, every member plays a vital role in our company’s success.
+        </p>
+    </section>
+
+    <section class="mb-5">
+        <h2>Contact Us</h2>
+        <p>
+            Have questions or feedback? Feel free to reach out to us through our contact page. We look forward to hearing from you!
+        </p>
+    </section>
+</div>
+
+<style>
+    h1, h2 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 600;
+        color: #343a40;
+    }
+
+    p, ul {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #6c757d;
+    }
+
+    ul {
+        color: #495057;
+        padding-left: 1.5rem;
+    }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+    .container {
+        max-width: 800px;
+        padding: 1.5rem;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    section {
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+        /* Hover Effects */
+        section:hover {
+            border-color: #343a40;
+            background-color: #ffffff;
+            box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.05);
+        }
+
+    h2:hover, ul li:hover {
+        color: #1b6ec2;
+    }
+</style>

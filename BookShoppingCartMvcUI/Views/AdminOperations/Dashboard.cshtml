@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container my-5 text-center">
+    <h2 class="display-4 text-primary mb-4">Welcome to the Admin Dashboard</h2>
+
+    <p class="lead text-muted mb-4">
+        Manage your content and settings from this central hub. Use the sidebar to navigate through different sections.
+    </p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Getting Started</h4>
+                    <p class="card-text">Click the menu items on the left to start managing your site.</p>
+                    <a href="/AdminOperations/AllOrders" class="btn btn-info btn-lg">View Orders</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .display-4 {
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+
+    .lead {
+        font-size: 1.25rem;
+    }
+
+    .card {
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .btn-lg {
+        font-size: 1.25rem;
+        padding: 12px 24px;
+    }
+
+    .text-muted {
+        font-size: 1.1rem;
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+</style>

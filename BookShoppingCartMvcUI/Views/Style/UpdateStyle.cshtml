@@ -1,0 +1,74 @@
+﻿@model StyleDTO
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container my-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Update Style</h2>
+
+        <a asp-action="Index" asp-controller="Style" class="btn btn-outline-primary mb-4">
+            <i class="bi bi-arrow-left-circle"></i> Back to Styles
+        </a>
+
+        <form asp-action="UpdateStyle">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label for="StyleName" class="form-label">Style Name</label>
+                <input type="text" class="form-control" asp-for="StyleName" id="StyleName" placeholder="Enter style name" />
+                <span asp-validation-for="StyleName" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-info btn-lg">Update Style</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 1.1rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 2rem !important;
+    }
+
+    .btn-outline-primary {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 25px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #1b6ec2;
+            color: white;
+        }
+
+    .form-control {
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .text-danger {
+        font-size: 0.9rem;
+    }
+</style>

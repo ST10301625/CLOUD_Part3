@@ -1,0 +1,136 @@
+﻿@model ShoppingCart
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container my-5">
+    @if (Model != null && Model.CartDetails != null && Model.CartDetails.Count > 0)
+    {
+        <h2 class="text-center mb-4" style="font-weight: 600;">My Cart</h2>
+
+        <table class="table table-striped table-bordered table-hover shadow-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Product</th>
+                    <th>Image</th>
+                    <th>Style</th>
+                    <th>Unit Price (R)</th>
+                    <th>Total Price (R)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartDetails)
+                {
+                    <tr>
+                        <td>@item.Product.ProductName</td>
+                        <td>
+                            @if (string.IsNullOrEmpty(item.Product.Image))
+                            {
+                                <img src="/images/NoImage.png" class="img-fluid" style="max-width: 80px; max-height: 100px;" />
+                            }
+                            else
+                            {
+                                <img src="/images/@item.Product.Image" class="img-fluid" style="max-width: 80px; max-height: 100px;" />
+                            }
+                        </td>
+                        <td>@item.Product.Style.StyleName</td>
+                        <td>@item.Product.Price X @item.Quantity</td>
+                        <td>@(item.Product.Price * item.Quantity)</td>
+                        <td class="d-flex justify-content-start">
+                            @if (item.Quantity < item.Product.Stock.Quantity)
+                            {
+                                <a class="btn btn-outline-primary me-2" href="/Cart/AddItem?productId=@item.ProductId&&redirect=1" role="button">
+                                    <i class="bi bi-plus-circle"></i> Add
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Out of Stock</span>
+                            }
+                            <a class="btn btn-outline-danger" href="/Cart/RemoveItem?productId=@item.ProductId" role="button">
+                                <i class="bi bi-dash-circle"></i> Remove
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between my-4">
+            <h4>Total (R):</h4>
+            <h4 class="text-success" style="font-weight: 600;">@(Model.CartDetails.Select(item => item.Product.Price * item.Quantity).Sum())</h4>
+        </div>
+
+        <div class="text-center">
+            <a class="btn btn-success btn-lg" href="/Cart/Checkout" role="button" style="border-radius: 50px; padding: 12px 30px;">Proceed to Checkout</a>
+        </div>
+    }
+    else
+    {
+        <h4 class="text-center my-4" style="font-size: 1.5rem; color: #6c757d;">Your cart is empty.</h4>
+        <div class="text-center">
+            <p style="color: #6c757d;">It looks like you haven't added anything to your cart yet.</p>
+            <a href="/Home" class="btn btn-outline-primary btn-lg" style="border-radius: 50px; padding: 12px 30px;">
+                Browse Products
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    .table {
+        background-color: #fff;
+        border-radius: 8px;
+    }
+
+        .table th, .table td {
+            vertical-align: middle;
+            font-size: 1rem;
+            padding: 1rem;
+        }
+
+        .table th {
+            font-weight: 600;
+        }
+
+    .btn-outline-primary, .btn-outline-danger {
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border-radius: 30px;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #1b6ec2;
+            color: white;
+        }
+
+        .btn-outline-danger:hover {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+    .text-success {
+        color: #28a745 !important;
+    }
+
+    .badge.bg-danger {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    .btn-outline-primary {
+        border: 2px solid #1b6ec2;
+        color: #1b6ec2;
+    }
+
+    .btn-outline-danger {
+        border: 2px solid #e74c3c;
+        color: #e74c3c;
+    }
+
+    .btn-lg {
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 12px 30px;
+    }
+</style>

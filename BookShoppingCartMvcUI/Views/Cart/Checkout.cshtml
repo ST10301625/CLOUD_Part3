@@ -1,0 +1,93 @@
+﻿@model CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">Checkout</h2>
+    <form asp-action="Checkout" class="bg-light p-4 rounded shadow-sm">
+
+        <!-- Name Field -->
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Name*</label>
+            <input type="text" class="form-control" asp-for="Name" placeholder="Enter your name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email*</label>
+            <input type="email" class="form-control" asp-for="Email" placeholder="Enter your email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <!-- Mobile Number Field -->
+        <div class="mb-3">
+            <label asp-for="MobileNumber" class="form-label">Mobile Number*</label>
+            <input type="text" class="form-control" asp-for="MobileNumber" placeholder="Enter your mobile number" />
+            <span asp-validation-for="MobileNumber" class="text-danger"></span>
+        </div>
+
+        <!-- Address Field -->
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label">Address*</label>
+            <textarea class="form-control" asp-for="Address" rows="5" placeholder="Enter your address"></textarea>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <!-- Payment Method Field -->
+        <div class="mb-3">
+            <label asp-for="PaymentMethod" class="form-label">Payment Method*</label>
+            <select asp-for="PaymentMethod" class="form-control">
+                <option value="">Select Payment Method</option>
+                @foreach (var method in Enum.GetValues(typeof(CloudPart3.Constants.PaymentMethods)))
+                {
+                    <option value="@method.ToString()">@method.ToString()</option>
+                }
+            </select>
+            <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Next</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+        .btn-primary:hover {
+            background-color: #007bff;
+        }
+
+    .bg-light {
+        background-color: #f9f9f9 !important;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
